@@ -1,7 +1,7 @@
 # Cat_and_Dog
 The exercise of deep learning
 
-#查看notebook工作路径
+# 查看notebook工作路径
 cd .
 !ls
 #200张小样本下载至noteboook
