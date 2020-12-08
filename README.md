@@ -92,19 +92,19 @@ def get_batch(image,label,image_W,image_H,batch_size,capacity):
     #label_batch = tf.reshape(label_batch,[batch_size])
     
     return image_batch,label_batch
-#将猫、狗图片分开存储至三个文件夹   
-import os, shutil
-#The path to the directory where the original
-#dataset was uncompressed
-#original_dataset_dir = './test/'
-original_dataset_dir = './train/dog_and_cat_200/'
-#The directory where we will
-#store our smaller dataset
-#base_dir = './test/base/'
-base_dir = './train/base/'
-os.mkdir(base_dir)
-#Directories for our training,
-#validation and test splits
+    #将猫、狗图片分开存储至三个文件夹   
+    import os, shutil
+    #The path to the directory where the original
+    #dataset was uncompressed
+    #original_dataset_dir = './test/'
+    original_dataset_dir = './train/dog_and_cat_200/'
+    #The directory where we will
+    #store our smaller dataset
+    #base_dir = './test/base/'
+    base_dir = './train/base/'
+    os.mkdir(base_dir)
+    #Directories for our training,
+    #validation and test splits
 train_dir1 = os.path.join(base_dir, 'train')
 os.mkdir(train_dir1)
 validation_dir = os.path.join(base_dir, 'validation')
