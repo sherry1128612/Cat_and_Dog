@@ -4,19 +4,19 @@ The exercise of deep learning
 ### 查看notebook工作路径
     cd .
     !ls
-## 200张小样本下载至noteboook
+### 200张小样本下载至noteboook
     from modelarts.session import Session
     session = Session()
     session.download_data(bucket_path="/cat-dog.dazhan/cat-dog/data/train/", path="/home/ma-user/work/")
     !ls
 
-## 引入库源
+### 引入库源
     import tensorflow as tf
     import numpy as np
     import os
     import matplotlib.pyplot as plt
 
-#用0，1分别标记猫狗图片
+### 用0，1分别标记猫狗图片
 def get_files(file_dir):
     #file_dir: 文件夹路径
     #return: 乱序后的图片和标签
@@ -93,7 +93,7 @@ def get_batch(image,label,image_W,image_H,batch_size,capacity):
     
     return image_batch,label_batch
 
-#将猫、狗图片分开存储至三个文件夹   
+### 将猫、狗图片分开存储至三个文件夹   
     import os, shutil
     #The path to the directory where the original
     #dataset was uncompressed
@@ -167,7 +167,7 @@ def get_batch(image,label,image_W,image_H,batch_size,capacity):
         dst = os.path.join(test_dogs_dir, fname)
         shutil.copyfile(src, dst)
   
-#数据增强
+### 数据增强
     from keras.preprocessing.image import ImageDataGenerator
     datagen = ImageDataGenerator(
         rotation_range=40,
@@ -199,7 +199,7 @@ def get_batch(image,label,image_W,image_H,batch_size,capacity):
             break
     plt.show()
 
-#创建卷积网络
+### 创建卷积网络
     from keras import layers
     from keras import models
     model = models.Sequential()
@@ -222,7 +222,7 @@ def get_batch(image,label,image_W,image_H,batch_size,capacity):
                 optimizer=optimizers.RMSprop(lr=1e-4),
                 metrics=['acc'])
 
-#调用网络，开始训练与测试
+### 调用网络，开始训练与测试
     train_datagen = ImageDataGenerator(
         rescale=1./255,
         rotation_range=40,
@@ -253,7 +253,7 @@ def get_batch(image,label,image_W,image_H,batch_size,capacity):
         validation_data=validation_generator,
         validation_steps=100)
       
-#绘制损失与准确度的结果图  
+### 绘制损失与准确度的结果图  
     import matplotlib.pyplot as plt
     acc = history.history['acc']
     val_acc = history.history['val_acc']
@@ -275,7 +275,7 @@ def get_batch(image,label,image_W,image_H,batch_size,capacity):
     plt.legend()
     plt.show()
 
-#加载VGG预训练模型
+### 加载VGG预训练模型
     from keras.applications import VGG16
     conv_base = VGG16(weights = 'vgg16_weights_tf_dim_ordering_tf_kernels_notop.h5', include_top = False, input_shape=(150, 150, 3))
     conv_base.summary()
@@ -312,7 +312,7 @@ def get_batch(image,label,image_W,image_H,batch_size,capacity):
     validation_features, validation_labels = extract_features(validation_dir, 40)
     test_features, test_labels = extract_features(test_dir, 40)
 
-#构造网络开始训练
+### 构造网络开始训练
     train_features = np.reshape(train_features, (120, 4 * 4 * 512))
     validation_features = np.reshape(validation_features, (40, 4 * 4 * 512))
     test_features = np.reshape(test_features, (40, 4 * 4* 512))
@@ -328,7 +328,7 @@ def get_batch(image,label,image_W,image_H,batch_size,capacity):
     history = model.fit(train_features, train_labels, epochs = 30, batch_size = 20, 
                         validation_data = (validation_features, validation_labels))
 
-#绘制损失与准确度的结果图
+### 绘制损失与准确度的结果图
     import matplotlib.pyplot as plt
     acc = history.history['acc']
     val_acc = history.history['val_acc']
@@ -350,7 +350,7 @@ def get_batch(image,label,image_W,image_H,batch_size,capacity):
     plt.legend()
     plt.show()
 
-#优化结构
+### 优化结构
     from keras import layers
     from keras import models
     model = models.Sequential()
@@ -387,7 +387,7 @@ def get_batch(image,label,image_W,image_H,batch_size,capacity):
     history = model.fit_generator(train_generator, steps_per_epoch = 100, epochs = 30, 
                                 validation_data = validation_generator,
                                 validation_steps = 50)
-#绘制损失与准确度的结果图
+### 绘制损失与准确度的结果图
     import matplotlib.pyplot as plt
     acc = history.history['acc']
     val_acc = history.history['val_acc']
