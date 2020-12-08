@@ -51,7 +51,7 @@ The exercise of deep learning
     
     return image_list,label_list
 
-#生成相同大小的批次
+    #生成相同大小的批次
     def get_batch(image,label,image_W,image_H,batch_size,capacity):
         #image,label:要生成batch的图像和标签list
         #image_W,image_H:图片的宽高
