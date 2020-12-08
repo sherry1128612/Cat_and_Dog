@@ -17,9 +17,9 @@ The exercise of deep learning
     import matplotlib.pyplot as plt
 
 ### 用0，1分别标记猫狗图片
-def get_files(file_dir):
-    #file_dir: 文件夹路径
-    #return: 乱序后的图片和标签
+    def get_files(file_dir):
+        #file_dir: 文件夹路径
+        #return: 乱序后的图片和标签
     
     cats = []
     label_cats = []
@@ -52,12 +52,12 @@ def get_files(file_dir):
     return image_list,label_list
 
 #生成相同大小的批次
-def get_batch(image,label,image_W,image_H,batch_size,capacity):
-    #image,label:要生成batch的图像和标签list
-    #image_W,image_H:图片的宽高
-    #batch_size:每个batch有多少张图片
-    #capacity:队列容量，一个队列最大多少
-    #return:图像和标签的batch
+    def get_batch(image,label,image_W,image_H,batch_size,capacity):
+        #image,label:要生成batch的图像和标签list
+        #image_W,image_H:图片的宽高
+        #batch_size:每个batch有多少张图片
+        #capacity:队列容量，一个队列最大多少
+        #return:图像和标签的batch
     
     #将python.list类型转换成tf能够识别的格式
     image = tf.cast(image,tf.string)
