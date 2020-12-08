@@ -92,7 +92,8 @@ def get_batch(image,label,image_W,image_H,batch_size,capacity):
     #label_batch = tf.reshape(label_batch,[batch_size])
     
     return image_batch,label_batch
-    #将猫、狗图片分开存储至三个文件夹   
+
+#将猫、狗图片分开存储至三个文件夹   
     import os, shutil
     #The path to the directory where the original
     #dataset was uncompressed
@@ -105,308 +106,308 @@ def get_batch(image,label,image_W,image_H,batch_size,capacity):
     os.mkdir(base_dir)
     #Directories for our training,
     #validation and test splits
-train_dir1 = os.path.join(base_dir, 'train')
-os.mkdir(train_dir1)
-validation_dir = os.path.join(base_dir, 'validation')
-os.mkdir(validation_dir)
-test_dir = os.path.join(base_dir, 'test')
-os.mkdir(test_dir)
-#Directory with our training cat pictures
-train_cats_dir = os.path.join(train_dir1, 'cats')
-os.mkdir(train_cats_dir)
-#Directory with our training dog pictures
-train_dogs_dir = os.path.join(train_dir1, 'dogs')
-os.mkdir(train_dogs_dir)
-#Directory with our validation cat pictures
-validation_cats_dir = os.path.join(validation_dir, 'cats')
-os.mkdir(validation_cats_dir)
-#Directory with our validation dog pictures
-validation_dogs_dir = os.path.join(validation_dir, 'dogs')
-os.mkdir(validation_dogs_dir)
-#Directory with our validation cat pictures
-test_cats_dir = os.path.join(test_dir, 'cats')
-os.mkdir(test_cats_dir)
-#Directory with our validation dog pictures
-test_dogs_dir = os.path.join(test_dir, 'dogs')
-os.mkdir(test_dogs_dir)
-#Copy first 60 cat images to train_cats_dir
-fnames = ['cat.{}.jpg'.format(i) for i in range(60)]
-for fname in fnames:
-    src = os.path.join(original_dataset_dir, fname)
-    dst = os.path.join(train_cats_dir, fname)
-    shutil.copyfile(src, dst)
-#Copy next 20 cat images to validation_cats_dir
-fnames = ['cat.{}.jpg'.format(i) for i in range(60, 80)]
-for fname in fnames:
-    src = os.path.join(original_dataset_dir, fname)
-    dst = os.path.join(validation_cats_dir, fname)
-    shutil.copyfile(src, dst)
-#Copy next 20 cat images to test_cats_dir
-fnames = ['cat.{}.jpg'.format(i) for i in range(80, 100)]
-for fname in fnames:
-    src = os.path.join(original_dataset_dir, fname)
-    dst = os.path.join(test_cats_dir, fname)
-    shutil.copyfile(src, dst)    
-#Copy first 60 dog images to train_dogs_dir
-fnames = ['dog.{}.jpg'.format(i) for i in range(60)]
-for fname in fnames:
-    src = os.path.join(original_dataset_dir, fname)
-    dst = os.path.join(train_dogs_dir, fname)
-    shutil.copyfile(src, dst)    
-#Copy next 20 dog images to validation_dogs_dir
-fnames = ['dog.{}.jpg'.format(i) for i in range(60, 80)]
-for fname in fnames:
-    src = os.path.join(original_dataset_dir, fname)
-    dst = os.path.join(validation_dogs_dir, fname)
-    shutil.copyfile(src, dst)    
-#Copy next 20 dog images to test_dogs_dir
-fnames = ['dog.{}.jpg'.format(i) for i in range(80, 100)]
-for fname in fnames:
-    src = os.path.join(original_dataset_dir, fname)
-    dst = os.path.join(test_dogs_dir, fname)
-    shutil.copyfile(src, dst)
+    train_dir1 = os.path.join(base_dir, 'train')
+    os.mkdir(train_dir1)
+    validation_dir = os.path.join(base_dir, 'validation')
+    os.mkdir(validation_dir)
+    test_dir = os.path.join(base_dir, 'test')
+    os.mkdir(test_dir)
+    #Directory with our training cat pictures
+    train_cats_dir = os.path.join(train_dir1, 'cats')
+    os.mkdir(train_cats_dir)
+    #Directory with our training dog pictures
+    train_dogs_dir = os.path.join(train_dir1, 'dogs')
+    os.mkdir(train_dogs_dir)
+    #Directory with our validation cat pictures
+    validation_cats_dir = os.path.join(validation_dir, 'cats')
+    os.mkdir(validation_cats_dir)
+    #Directory with our validation dog pictures
+    validation_dogs_dir = os.path.join(validation_dir, 'dogs')
+    os.mkdir(validation_dogs_dir)
+    #Directory with our validation cat pictures
+    test_cats_dir = os.path.join(test_dir, 'cats')
+    os.mkdir(test_cats_dir)
+    #Directory with our validation dog pictures
+    test_dogs_dir = os.path.join(test_dir, 'dogs')
+    os.mkdir(test_dogs_dir)
+    #Copy first 60 cat images to train_cats_dir
+    fnames = ['cat.{}.jpg'.format(i) for i in range(60)]
+    for fname in fnames:
+        src = os.path.join(original_dataset_dir, fname)
+        dst = os.path.join(train_cats_dir, fname)
+        shutil.copyfile(src, dst)
+    #Copy next 20 cat images to validation_cats_dir
+    fnames = ['cat.{}.jpg'.format(i) for i in range(60, 80)]
+    for fname in fnames:
+        src = os.path.join(original_dataset_dir, fname)
+        dst = os.path.join(validation_cats_dir, fname)
+        shutil.copyfile(src, dst)
+    #Copy next 20 cat images to test_cats_dir
+    fnames = ['cat.{}.jpg'.format(i) for i in range(80, 100)]
+    for fname in fnames:
+        src = os.path.join(original_dataset_dir, fname)
+        dst = os.path.join(test_cats_dir, fname)
+        shutil.copyfile(src, dst)    
+    #Copy first 60 dog images to train_dogs_dir
+    fnames = ['dog.{}.jpg'.format(i) for i in range(60)]
+    for fname in fnames:
+        src = os.path.join(original_dataset_dir, fname)
+        dst = os.path.join(train_dogs_dir, fname)
+        shutil.copyfile(src, dst)    
+    #Copy next 20 dog images to validation_dogs_dir
+    fnames = ['dog.{}.jpg'.format(i) for i in range(60, 80)]
+    for fname in fnames:
+        src = os.path.join(original_dataset_dir, fname)
+        dst = os.path.join(validation_dogs_dir, fname)
+        shutil.copyfile(src, dst)    
+    #Copy next 20 dog images to test_dogs_dir
+    fnames = ['dog.{}.jpg'.format(i) for i in range(80, 100)]
+    for fname in fnames:
+        src = os.path.join(original_dataset_dir, fname)
+        dst = os.path.join(test_dogs_dir, fname)
+        shutil.copyfile(src, dst)
   
 #数据增强
-from keras.preprocessing.image import ImageDataGenerator
-datagen = ImageDataGenerator(
-      rotation_range=40,
-      width_shift_range=0.2,
-      height_shift_range=0.2,
-      shear_range=0.2,
-      zoom_range=0.2,
-      horizontal_flip=True,
-      fill_mode='nearest')
-#This is module with image preprocessing utilities
-from keras.preprocessing import image
-fnames = [os.path.join(train_cats_dir, fname) for fname in os.listdir(train_cats_dir)]
-#We pick one image to "augment"
-img_path = fnames[3]
-#Read the image and resize it
-img = image.load_img(img_path, target_size=(150, 150))
-#Convert it to a Numpy array with shape (150, 150, 3)
-x = image.img_to_array(img)
-#Reshape it to (1, 150, 150, 3)
-x = x.reshape((1,) + x.shape)
-#The .flow() command below generates batches of randomly transformed images.
-#It will loop indefinitely, so we need to `break` the loop at some point!
-i = 0
-for batch in datagen.flow(x, batch_size=1):
-    plt.figure(i)
-    imgplot = plt.imshow(image.array_to_img(batch[0]))
-    i += 1
-    if i % 4 == 0:
-        break
-plt.show()
+    from keras.preprocessing.image import ImageDataGenerator
+    datagen = ImageDataGenerator(
+        rotation_range=40,
+        width_shift_range=0.2,
+        height_shift_range=0.2,
+        shear_range=0.2,
+        zoom_range=0.2,
+        horizontal_flip=True,
+        fill_mode='nearest')
+    #This is module with image preprocessing utilities
+    from keras.preprocessing import image
+    fnames = [os.path.join(train_cats_dir, fname) for fname in os.listdir(train_cats_dir)]
+    #We pick one image to "augment"
+    img_path = fnames[3]
+    #Read the image and resize it
+    img = image.load_img(img_path, target_size=(150, 150))
+    #Convert it to a Numpy array with shape (150, 150, 3)
+    x = image.img_to_array(img)
+    #Reshape it to (1, 150, 150, 3)
+    x = x.reshape((1,) + x.shape)
+    #The .flow() command below generates batches of randomly transformed images.
+    #It will loop indefinitely, so we need to `break` the loop at some point!
+    i = 0
+    for batch in datagen.flow(x, batch_size=1):
+        plt.figure(i)
+        imgplot = plt.imshow(image.array_to_img(batch[0]))
+        i += 1
+        if i % 4 == 0:
+            break
+    plt.show()
 
 #创建卷积网络
-from keras import layers
-from keras import models
-model = models.Sequential()
-model.add(layers.Conv2D(32, (3, 3), activation='relu',
-                        input_shape=(150, 150, 3)))
-model.add(layers.MaxPooling2D((2, 2)))
-model.add(layers.Conv2D(64, (3, 3), activation='relu'))
-model.add(layers.MaxPooling2D((2, 2)))
-model.add(layers.Conv2D(128, (3, 3), activation='relu'))
-model.add(layers.MaxPooling2D((2, 2)))
-model.add(layers.Conv2D(128, (3, 3), activation='relu'))
-model.add(layers.MaxPooling2D((2, 2)))
-model.add(layers.Flatten())
-model.add(layers.Dropout(0.5))
-model.add(layers.Dense(512, activation='relu'))
-model.add(layers.Dense(1, activation='sigmoid'))
+    from keras import layers
+    from keras import models
+    model = models.Sequential()
+    model.add(layers.Conv2D(32, (3, 3), activation='relu',
+                            input_shape=(150, 150, 3)))
+    model.add(layers.MaxPooling2D((2, 2)))
+    model.add(layers.Conv2D(64, (3, 3), activation='relu'))
+    model.add(layers.MaxPooling2D((2, 2)))
+    model.add(layers.Conv2D(128, (3, 3), activation='relu'))
+    model.add(layers.MaxPooling2D((2, 2)))
+    model.add(layers.Conv2D(128, (3, 3), activation='relu'))
+    model.add(layers.MaxPooling2D((2, 2)))
+    model.add(layers.Flatten())
+    model.add(layers.Dropout(0.5))
+    model.add(layers.Dense(512, activation='relu'))
+    model.add(layers.Dense(1, activation='sigmoid'))
 
-from keras import optimizers
-model.compile(loss='binary_crossentropy',
-              optimizer=optimizers.RMSprop(lr=1e-4),
-              metrics=['acc'])
+    from keras import optimizers
+    model.compile(loss='binary_crossentropy',
+                optimizer=optimizers.RMSprop(lr=1e-4),
+                metrics=['acc'])
 
 #调用网络，开始训练与测试
-train_datagen = ImageDataGenerator(
-    rescale=1./255,
-    rotation_range=40,
-    width_shift_range=0.2,
-    height_shift_range=0.2,
-    shear_range=0.2,
-    zoom_range=0.2,
-    horizontal_flip=True,)
-#Note that the validation data should not be augmented!
-test_datagen = ImageDataGenerator(rescale=1./255)
-train_generator = train_datagen.flow_from_directory(
-        # This is the target directory
-        train_dir1,
-        # All images will be resized to 150x150
-        target_size=(150, 150),
-        batch_size=32,
-        # Since we use binary_crossentropy loss, we need binary labels
-        class_mode='binary')
-validation_generator = test_datagen.flow_from_directory(
-        validation_dir,
-        target_size=(150, 150),
-        batch_size=32,
-        class_mode='binary')
-history = model.fit_generator(
-      train_generator,
-      steps_per_epoch=100,
-      epochs=100,
-      validation_data=validation_generator,
-      validation_steps=100)
+    train_datagen = ImageDataGenerator(
+        rescale=1./255,
+        rotation_range=40,
+        width_shift_range=0.2,
+        height_shift_range=0.2,
+        shear_range=0.2,
+        zoom_range=0.2,
+        horizontal_flip=True,)
+    #Note that the validation data should not be augmented!
+    test_datagen = ImageDataGenerator(rescale=1./255)
+    train_generator = train_datagen.flow_from_directory(
+            # This is the target directory
+            train_dir1,
+            # All images will be resized to 150x150
+            target_size=(150, 150),
+            batch_size=32,
+            #Since we use binary_crossentropy loss, we need binary labels
+            class_mode='binary')
+    validation_generator = test_datagen.flow_from_directory(
+            validation_dir,
+            target_size=(150, 150),
+            batch_size=32,
+            class_mode='binary')
+    history = model.fit_generator(
+        train_generator,
+        steps_per_epoch=100,
+        epochs=100,
+        validation_data=validation_generator,
+        validation_steps=100)
       
 #绘制损失与准确度的结果图  
-import matplotlib.pyplot as plt
-acc = history.history['acc']
-val_acc = history.history['val_acc']
-loss = history.history['loss']
-val_loss = history.history['val_loss']
-epochs = range(len(acc))
-plt.plot(epochs, acc, 'ro', label='Training acc')
-plt.plot(epochs, val_acc, 'b', label='Validation acc')
-plt.title('Training and validation accuracy')
-plt.xlabel('Step')
-plt.ylabel('Accuracy')
-plt.legend()
-plt.figure()
-plt.plot(epochs, loss, 'ro', label='Training loss')
-plt.plot(epochs, val_loss, 'b', label='Validation loss')
-plt.title('Training and validation loss')
-plt.xlabel('Step')
-plt.ylabel('Loss')
-plt.legend()
-plt.show()
+    import matplotlib.pyplot as plt
+    acc = history.history['acc']
+    val_acc = history.history['val_acc']
+    loss = history.history['loss']
+    val_loss = history.history['val_loss']
+    epochs = range(len(acc))
+    plt.plot(epochs, acc, 'ro', label='Training acc')
+    plt.plot(epochs, val_acc, 'b', label='Validation acc')
+    plt.title('Training and validation accuracy')
+    plt.xlabel('Step')
+    plt.ylabel('Accuracy')
+    plt.legend()
+    plt.figure()
+    plt.plot(epochs, loss, 'ro', label='Training loss')
+    plt.plot(epochs, val_loss, 'b', label='Validation loss')
+    plt.title('Training and validation loss')
+    plt.xlabel('Step')
+    plt.ylabel('Loss')
+    plt.legend()
+    plt.show()
 
 #加载VGG预训练模型
-from keras.applications import VGG16
-conv_base = VGG16(weights = 'vgg16_weights_tf_dim_ordering_tf_kernels_notop.h5', include_top = False, input_shape=(150, 150, 3))
-conv_base.summary()
-#将图片导入
-import os 
-import numpy as np
-from keras.preprocessing.image import ImageDataGenerator
-base_dir = './train/base/'
-train_dir1 = os.path.join(base_dir, 'train')
-validation_dir = os.path.join(base_dir, 'validation')
-test_dir = os.path.join(base_dir, 'test')
-datagen = ImageDataGenerator(rescale = 1. / 255)
-batch_size = 20
-def extract_features(directory, sample_count):
-    features = np.zeros(shape = (sample_count, 4, 4, 512))
-    labels = np.zeros(shape = (sample_count))
-    generator = datagen.flow_from_directory(directory, target_size = (150, 150), 
-                                            batch_size = batch_size,
-                                            class_mode = 'binary')
-    i = 0
-    for inputs_batch, labels_batch in generator:
-        #把图片输入VGG16卷积层，让它把图片信息抽取出来
-        features_batch = conv_base.predict(inputs_batch)
-        #feature_batch 是 4*4*512结构
-        features[i * batch_size : (i + 1)*batch_size] = features_batch
-        labels[i * batch_size : (i+1)*batch_size] = labels_batch
-        i += 1
-        if i * batch_size >= sample_count :
-            #for in 在generator上的循环是无止境的，因此我们必须主动break掉
-            break
-        return features , labels
-#extract_features 返回数据格式为(samples, 4, 4, 512)
-train_features, train_labels = extract_features(train_dir1, 120)
-validation_features, validation_labels = extract_features(validation_dir, 40)
-test_features, test_labels = extract_features(test_dir, 40)
+    from keras.applications import VGG16
+    conv_base = VGG16(weights = 'vgg16_weights_tf_dim_ordering_tf_kernels_notop.h5', include_top = False, input_shape=(150, 150, 3))
+    conv_base.summary()
+    #将图片导入
+    import os 
+    import numpy as np
+    from keras.preprocessing.image import ImageDataGenerator
+    base_dir = './train/base/'
+    train_dir1 = os.path.join(base_dir, 'train')
+    validation_dir = os.path.join(base_dir, 'validation')
+    test_dir = os.path.join(base_dir, 'test')
+    datagen = ImageDataGenerator(rescale = 1. / 255)
+    batch_size = 20
+    def extract_features(directory, sample_count):
+        features = np.zeros(shape = (sample_count, 4, 4, 512))
+        labels = np.zeros(shape = (sample_count))
+        generator = datagen.flow_from_directory(directory, target_size = (150, 150), 
+                                                batch_size = batch_size,
+                                                class_mode = 'binary')
+        i = 0
+        for inputs_batch, labels_batch in generator:
+            #把图片输入VGG16卷积层，让它把图片信息抽取出来
+            features_batch = conv_base.predict(inputs_batch)
+            #feature_batch 是 4*4*512结构
+            features[i * batch_size : (i + 1)*batch_size] = features_batch
+            labels[i * batch_size : (i+1)*batch_size] = labels_batch
+            i += 1
+            if i * batch_size >= sample_count :
+                #for in 在generator上的循环是无止境的，因此我们必须主动break掉
+                break
+            return features , labels
+    #extract_features 返回数据格式为(samples, 4, 4, 512)
+    train_features, train_labels = extract_features(train_dir1, 120)
+    validation_features, validation_labels = extract_features(validation_dir, 40)
+    test_features, test_labels = extract_features(test_dir, 40)
 
 #构造网络开始训练
-train_features = np.reshape(train_features, (120, 4 * 4 * 512))
-validation_features = np.reshape(validation_features, (40, 4 * 4 * 512))
-test_features = np.reshape(test_features, (40, 4 * 4* 512))
-from keras import models
-from keras import layers
-from keras import optimizers
-#构造我们自己的网络层对输出数据进行分类
-model = models.Sequential()
-model.add(layers.Dense(256, activation='relu', input_dim = 4 * 4 * 512))
-model.add(layers.Dropout(0.5))
-model.add(layers.Dense(1, activation = 'sigmoid'))
-model.compile(optimizer=optimizers.RMSprop(lr = 2e-5), loss = 'binary_crossentropy', metrics = ['acc'])
-history = model.fit(train_features, train_labels, epochs = 30, batch_size = 20, 
-                    validation_data = (validation_features, validation_labels))
+    train_features = np.reshape(train_features, (120, 4 * 4 * 512))
+    validation_features = np.reshape(validation_features, (40, 4 * 4 * 512))
+    test_features = np.reshape(test_features, (40, 4 * 4* 512))
+    from keras import models
+    from keras import layers
+    from keras import optimizers
+    #构造我们自己的网络层对输出数据进行分类
+    model = models.Sequential()
+    model.add(layers.Dense(256, activation='relu', input_dim = 4 * 4 * 512))
+    model.add(layers.Dropout(0.5))
+    model.add(layers.Dense(1, activation = 'sigmoid'))
+    model.compile(optimizer=optimizers.RMSprop(lr = 2e-5), loss = 'binary_crossentropy', metrics = ['acc'])
+    history = model.fit(train_features, train_labels, epochs = 30, batch_size = 20, 
+                        validation_data = (validation_features, validation_labels))
 
 #绘制损失与准确度的结果图
-import matplotlib.pyplot as plt
-acc = history.history['acc']
-val_acc = history.history['val_acc']
-loss = history.history['loss']
-val_loss = history.history['val_loss']
-epochs = range(len(acc))
-plt.plot(epochs, acc, 'ro', label='Training acc')
-plt.plot(epochs, val_acc, 'b', label='Validation acc')
-plt.title('Training and validation accuracy')
-plt.xlabel('Step')
-plt.ylabel('Accuracy')
-plt.legend()
-plt.figure()
-plt.plot(epochs, loss, 'ro', label='Training loss')
-plt.plot(epochs, val_loss, 'b', label='Validation loss')
-plt.title('Training and validation loss')
-plt.xlabel('Step')
-plt.ylabel('Loss')
-plt.legend()
-plt.show()
+    import matplotlib.pyplot as plt
+    acc = history.history['acc']
+    val_acc = history.history['val_acc']
+    loss = history.history['loss']
+    val_loss = history.history['val_loss']
+    epochs = range(len(acc))
+    plt.plot(epochs, acc, 'ro', label='Training acc')
+    plt.plot(epochs, val_acc, 'b', label='Validation acc')
+    plt.title('Training and validation accuracy')
+    plt.xlabel('Step')
+    plt.ylabel('Accuracy')
+    plt.legend()
+    plt.figure()
+    plt.plot(epochs, loss, 'ro', label='Training loss')
+    plt.plot(epochs, val_loss, 'b', label='Validation loss')
+    plt.title('Training and validation loss')
+    plt.xlabel('Step')
+    plt.ylabel('Loss')
+    plt.legend()
+    plt.show()
 
 #优化结构
-from keras import layers
-from keras import models
-model = models.Sequential()
-#将VGG16的卷积层直接添加到我们的网络
-model.add(conv_base)
-#添加我们自己的网络层
-model.add(layers.Flatten())
-model.add(layers.Dense(256, activation = 'relu'))
-model.add(layers.Dense(1, activation = 'sigmoid'))
-model.summary()
-#参数调优，冻结层
-conv_base.trainable = True
-set_trainable = False
-#一旦读取到'block5_conv1'时，意味着来到卷积网络的最高三层
-#可以使用conv_base.summary()来查看卷积层的信息
-for layer in conv_base.layers:
-    if layer.name == 'block5_conv1':
-        set_trainable = True
-    if set_trainable:
-        #当trainable == True 意味着该网络层可以更改，要不然该网络层会被冻结，不能修改
-        layer.trainable = True
-    else:
-        layer.trainable = False
-#把图片数据读取进来
-test_datagen = ImageDataGenerator(rescale = 1. / 255)
-train_generator = test_datagen.flow_from_directory(train_dir1, target_size = (150, 150), batch_size = 20,
-                                                   class_mode = 'binary')
-validation_generator = test_datagen.flow_from_directory(validation_dir, target_size = (150,150),
-                                                       batch_size = 20,
-                                                       class_mode = 'binary')
-model.compile(loss = 'binary_crossentropy', optimizer = optimizers.RMSprop(2e-5),
-             metrics = ['acc'])
+    from keras import layers
+    from keras import models
+    model = models.Sequential()
+    #将VGG16的卷积层直接添加到我们的网络
+    model.add(conv_base)
+    #添加我们自己的网络层
+    model.add(layers.Flatten())
+    model.add(layers.Dense(256, activation = 'relu'))
+    model.add(layers.Dense(1, activation = 'sigmoid'))
+    model.summary()
+    #参数调优，冻结层
+    conv_base.trainable = True
+    set_trainable = False
+    #一旦读取到'block5_conv1'时，意味着来到卷积网络的最高三层
+    #可以使用conv_base.summary()来查看卷积层的信息
+    for layer in conv_base.layers:
+        if layer.name == 'block5_conv1':
+            set_trainable = True
+        if set_trainable:
+            #当trainable == True 意味着该网络层可以更改，要不然该网络层会被冻结，不能修改
+            layer.trainable = True
+        else:
+            layer.trainable = False
+    #把图片数据读取进来
+    test_datagen = ImageDataGenerator(rescale = 1. / 255)
+    train_generator = test_datagen.flow_from_directory(train_dir1, target_size = (150, 150), batch_size = 20,
+                                                    class_mode = 'binary')
+    validation_generator = test_datagen.flow_from_directory(validation_dir, target_size = (150,150),
+                                                        batch_size = 20,
+                                                        class_mode = 'binary')
+    model.compile(loss = 'binary_crossentropy', optimizer = optimizers.RMSprop(2e-5),
+                metrics = ['acc'])
 
-history = model.fit_generator(train_generator, steps_per_epoch = 100, epochs = 30, 
-                              validation_data = validation_generator,
-                              validation_steps = 50)
+    history = model.fit_generator(train_generator, steps_per_epoch = 100, epochs = 30, 
+                                validation_data = validation_generator,
+                                validation_steps = 50)
 #绘制损失与准确度的结果图
-import matplotlib.pyplot as plt
-acc = history.history['acc']
-val_acc = history.history['val_acc']
-loss = history.history['loss']
-val_loss = history.history['val_loss']
-epochs = range(len(acc))
-plt.plot(epochs, acc, 'ro', label='Training acc')
-plt.plot(epochs, val_acc, 'b', label='Validation acc')
-plt.title('Training and validation accuracy')
-plt.xlabel('Step')
-plt.ylabel('Accuracy')
-plt.legend()
-plt.figure()
-plt.plot(epochs, loss, 'ro', label='Training loss')
-plt.plot(epochs, val_loss, 'b', label='Validation loss')
-plt.title('Training and validation loss')
-plt.xlabel('Step')
-plt.ylabel('Loss')
-plt.legend()
-plt.show()                              
+    import matplotlib.pyplot as plt
+    acc = history.history['acc']
+    val_acc = history.history['val_acc']
+    loss = history.history['loss']
+    val_loss = history.history['val_loss']
+    epochs = range(len(acc))
+    plt.plot(epochs, acc, 'ro', label='Training acc')
+    plt.plot(epochs, val_acc, 'b', label='Validation acc')
+    plt.title('Training and validation accuracy')
+    plt.xlabel('Step')
+    plt.ylabel('Accuracy')
+    plt.legend()
+    plt.figure()
+    plt.plot(epochs, loss, 'ro', label='Training loss')
+    plt.plot(epochs, val_loss, 'b', label='Validation loss')
+    plt.title('Training and validation loss')
+    plt.xlabel('Step')
+    plt.ylabel('Loss')
+    plt.legend()
+    plt.show()                              
                               
                            
     
