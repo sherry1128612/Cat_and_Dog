@@ -1,14 +1,14 @@
 # Cat_and_Dog
 The exercise of deep learning
 
-# 查看notebook工作路径
-cd .
-!ls
-#200张小样本下载至noteboook
-from modelarts.session import Session
-session = Session()
-session.download_data(bucket_path="/cat-dog.dazhan/cat-dog/data/train/", path="/home/ma-user/work/")
-!ls
+##查看notebook工作路径
+    cd .
+    !ls
+    #200张小样本下载至noteboook
+    from modelarts.session import Session
+    session = Session()
+    session.download_data(bucket_path="/cat-dog.dazhan/cat-dog/data/train/", path="/home/ma-user/work/")
+    !ls
 
 #引入库源
 import tensorflow as tf
