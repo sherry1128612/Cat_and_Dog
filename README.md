@@ -2,7 +2,11 @@
 The exercise of deep learning
 
 ## 环境配置
+华为云
+Python3
+GPU:2*v100NV32 CPU: 16 核 128GiB
 Tensorflow 1.8
+keras 2.2.4
 
 ## 深度学习具体算法
 ### 构建卷积网络，从头开始训练
