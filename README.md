@@ -1,6 +1,8 @@
+@[TOC](目录)
 # Cat_and_Dog
 The exercise of deep learning
 
+## 构建卷积网络，从头开始训练
 ### 查看notebook工作路径
     cd .
     !ls
@@ -46,8 +48,7 @@ The exercise of deep learning
     #从打乱的temp中再取出list（img和lab）
     image_list = list(temp[:,0])
     label_list = list(temp[:,1])
-    label_list = [int(float(i)) for i in label_list]
-    #label_list = [int(i) for i in label_list]    #字符串类型转换为int类型
+    label_list = [int(float(i)) for i in label_list]   #字符串类型转换为int类型
     
     return image_list,label_list
 
@@ -74,9 +75,6 @@ The exercise of deep learning
     
     #统一图片大小
     #将图片以图片中心进行裁剪或者扩充为指定的image_W,image_H
-    #image = tf.image.resize_image_with_crop_or_pad(image,image_W,image_H)
-    #我的方法
-    
     image = tf.image.resize_images(image,[image_H,image_W],method = tf.image.ResizeMethod.NEAREST_NEIGHBOR)   #最近邻插值方法
     image = tf.cast(image,tf.float32)      #string类型转换为float    
     image = image/255
@@ -87,9 +85,6 @@ The exercise of deep learning
                                              batch_size = batch_size,
                                              num_threads = 64,
                                              capacity = capacity)
-    
-    #多余行：重新排列label，行数为[batch_size]
-    #label_batch = tf.reshape(label_batch,[batch_size])
     
     return image_batch,label_batch
 
@@ -275,7 +270,8 @@ The exercise of deep learning
     plt.legend()
     plt.show()
 
-### 加载VGG预训练模型
+## 预训练模型VGG16
+### 加载VGG16预训练模型
     from keras.applications import VGG16
     conv_base = VGG16(weights = 'vgg16_weights_tf_dim_ordering_tf_kernels_notop.h5', include_top = False, input_shape=(150, 150, 3))
     conv_base.summary()
@@ -350,6 +346,7 @@ The exercise of deep learning
     plt.legend()
     plt.show()
 
+## VGG16的卷积层添加至自主搭建的网络
 ### 优化结构
     from keras import layers
     from keras import models
