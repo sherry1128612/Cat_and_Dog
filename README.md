@@ -1,6 +1,13 @@
 # Cat_and_Dog
 The exercise of deep learning
 
+###########部署步骤
+1. 添加系统环境变量
+    export $PORTAL_VERSION="production" // production, test, dev
+
+
+2. npm install  //安装node运行环境
+
 ### 查看notebook工作路径
     cd .
     !ls
