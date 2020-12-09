@@ -1,18 +1,24 @@
-@Cat_and_Dog
-# Cat_and_Dog
+# Cat-and-Dog
 The exercise of deep learning
 
-## 构建卷积网络，从头开始训练
-### 查看notebook工作路径
+## 环境配置
+Tensorflow 1.8
+
+## 深度学习具体算法
+### 构建卷积网络，从头开始训练
+#### 查看notebook工作路径
     cd .
     !ls
-### 200张小样本下载至noteboook
+#### 将OBS中存储的样本数据下载至noteboook
+    '''
+        bucket_path：OBS中数据集存储具体路径
+    '''
     from modelarts.session import Session
     session = Session()
-    session.download_data(bucket_path="/cat-dog.dazhan/cat-dog/data/train/", path="/home/ma-user/work/")
+    session.download_data(bucket_path="/cat-dog.dazhan/cat-dog/data/train/", path="/home/ma-user/work/")  
     !ls
 
-### 引入库源
+#### 引入库源
     import tensorflow as tf
     import numpy as np
     import os
@@ -88,11 +94,11 @@ The exercise of deep learning
     
     return image_batch,label_batch
 
-### 将猫、狗图片分开存储至三个文件夹   
+#### 将猫、狗图片分开存储至三个文件夹   
     import os, shutil
     #The path to the directory where the original
     #dataset was uncompressed
-    #original_dataset_dir = './test/'
+    #original_dataset_dir = './test/',根据数据集所存文件夹进行修改
     original_dataset_dir = './train/dog_and_cat_200/'
     #The directory where we will
     #store our smaller dataset
@@ -162,7 +168,7 @@ The exercise of deep learning
         dst = os.path.join(test_dogs_dir, fname)
         shutil.copyfile(src, dst)
   
-### 数据增强
+#### 数据增强
     from keras.preprocessing.image import ImageDataGenerator
     datagen = ImageDataGenerator(
         rotation_range=40,
@@ -194,7 +200,7 @@ The exercise of deep learning
             break
     plt.show()
 
-### 创建卷积网络
+#### 创建卷积网络
     from keras import layers
     from keras import models
     model = models.Sequential()
@@ -217,7 +223,7 @@ The exercise of deep learning
                 optimizer=optimizers.RMSprop(lr=1e-4),
                 metrics=['acc'])
 
-### 调用网络，开始训练与测试
+#### 调用网络，开始训练与测试
     train_datagen = ImageDataGenerator(
         rescale=1./255,
         rotation_range=40,
@@ -248,7 +254,7 @@ The exercise of deep learning
         validation_data=validation_generator,
         validation_steps=100)
       
-### 绘制损失与准确度的结果图  
+#### 绘制损失与准确度的结果图  
     import matplotlib.pyplot as plt
     acc = history.history['acc']
     val_acc = history.history['val_acc']
@@ -270,8 +276,8 @@ The exercise of deep learning
     plt.legend()
     plt.show()
 
-## 预训练模型VGG16
-### 加载VGG16预训练模型
+### 预训练模型VGG16
+#### 加载VGG16预训练模型
     from keras.applications import VGG16
     conv_base = VGG16(weights = 'vgg16_weights_tf_dim_ordering_tf_kernels_notop.h5', include_top = False, input_shape=(150, 150, 3))
     conv_base.summary()
@@ -279,7 +285,7 @@ The exercise of deep learning
     import os 
     import numpy as np
     from keras.preprocessing.image import ImageDataGenerator
-    base_dir = './train/base/'
+    base_dir = './train/base/'      #依据具体路径进行调整
     train_dir1 = os.path.join(base_dir, 'train')
     validation_dir = os.path.join(base_dir, 'validation')
     test_dir = os.path.join(base_dir, 'test')
@@ -308,7 +314,7 @@ The exercise of deep learning
     validation_features, validation_labels = extract_features(validation_dir, 40)
     test_features, test_labels = extract_features(test_dir, 40)
 
-### 构造网络开始训练
+#### 构造网络开始训练
     train_features = np.reshape(train_features, (120, 4 * 4 * 512))
     validation_features = np.reshape(validation_features, (40, 4 * 4 * 512))
     test_features = np.reshape(test_features, (40, 4 * 4* 512))
@@ -324,7 +330,7 @@ The exercise of deep learning
     history = model.fit(train_features, train_labels, epochs = 30, batch_size = 20, 
                         validation_data = (validation_features, validation_labels))
 
-### 绘制损失与准确度的结果图
+#### 绘制损失与准确度的结果图
     import matplotlib.pyplot as plt
     acc = history.history['acc']
     val_acc = history.history['val_acc']
@@ -346,8 +352,8 @@ The exercise of deep learning
     plt.legend()
     plt.show()
 
-## VGG16的卷积层添加至自主搭建的网络
-### 优化结构
+### VGG16的卷积层添加至自主搭建的网络
+#### 优化结构
     from keras import layers
     from keras import models
     model = models.Sequential()
@@ -384,7 +390,7 @@ The exercise of deep learning
     history = model.fit_generator(train_generator, steps_per_epoch = 100, epochs = 30, 
                                 validation_data = validation_generator,
                                 validation_steps = 50)
-### 绘制损失与准确度的结果图
+#### 绘制损失与准确度的结果图
     import matplotlib.pyplot as plt
     acc = history.history['acc']
     val_acc = history.history['val_acc']
