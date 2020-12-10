@@ -98,6 +98,42 @@ The exercise of deep learning
     
     return image_batch,label_batch
 
+    #输出4张标记图片
+    import matplotlib.pyplot as plt
+
+    BATCH_SIZE = 4
+    CAPACITY = 256
+    IMG_W = 208
+    IMG_H = 208
+
+    train_dir ="./train/dog_and_cat_200/"    #200张小样本
+    #25000张样本将train_dir改为：train_dir ="./test/"
+    #调用前面的两个函数，生成batch
+    #image_list,label_list = get_files(train_dir)
+    image_list,label_list = get_files(train_dir)
+    image_batch,label_batch = get_batch(image_list,label_list,IMG_W,IMG_H,BATCH_SIZE,CAPACITY)
+
+    #开启会话session，利用tf.train.Coordinator()和tf.train.start_queue_runners(coord=coord)来监控队列
+    with tf.Session() as sess:
+    i = 0
+    ## Coordinator  和 start_queue_runners 监控 queue 的状态，不停的入队出队1
+    coord = tf.train.Coordinator()
+    threads = tf.train.start_queue_runners(coord=coord)
+    try:
+        while not coord.should_stop() and i < 1:
+            img,label = sess.run([image_batch,label_batch])
+            for j in np.arange(BATCH_SIZE):
+                print("label: %d" % label[j])
+                plt.imshow(img[j,:,:,:])
+                plt.show()
+                i += 1
+    #队列中没有数据
+    except tf.errors.OutOfRangeError:
+        print("done!")
+    finally:
+        coord.request_stop()
+    coord.join(threads)
+
 #### 将猫、狗图片分开存储至三个文件夹   
     import os, shutil
     #The path to the directory where the original
@@ -106,7 +142,7 @@ The exercise of deep learning
     original_dataset_dir = './train/dog_and_cat_200/'
     #The directory where we will
     #store our smaller dataset
-    #base_dir = './test/base/'
+    #base_dir = './test/base/' ，与所设original_dataset_dir路径对应
     base_dir = './train/base/'
     os.mkdir(base_dir)
     #Directories for our training,
